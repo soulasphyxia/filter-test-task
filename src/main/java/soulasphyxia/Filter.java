@@ -1,9 +1,7 @@
 package soulasphyxia;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Scanner;
 
@@ -11,16 +9,16 @@ public class Filter {
 
     private StatisticsCollector collector;
 
-    private final Configuration config;
+    private boolean appendFlag = false;
 
-    private final Writer writer;
+    private String statictics;
 
-    public Filter(Configuration config){
-        this.config = config;
-        this.writer = new Writer(config.isAppendFlag());
+    public Filter(){
+
     }
 
     public void filter(File file) throws IOException {
+        Writer writer = new Writer(appendFlag);
         Scanner sc = new Scanner(file);
         while(sc.hasNext()){
             if(sc.hasNextBigInteger()){
@@ -37,10 +35,10 @@ public class Filter {
             }
         }
         sc.close();
+        writer.close();
     }
 
-
-    public void close() throws IOException {
-        writer.close();
+    public void setAppendFlag(boolean appendFlag) {
+        this.appendFlag = appendFlag;
     }
 }

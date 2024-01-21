@@ -7,7 +7,7 @@ import java.io.File;
 import java.util.Arrays;
 
 
-public class Configuration {
+public class FilterArgumentsCLI {
 
     @CommandLine.Option(names = {"-o"},description = "Префикс для имени файла")
     private String prefix;

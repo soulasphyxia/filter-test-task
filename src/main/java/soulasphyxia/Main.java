@@ -3,33 +3,30 @@ package soulasphyxia;
 import picocli.CommandLine;
 
 import java.io.*;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.math.MathContext;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         args = new String[]{"in2.txt","sample.txt"};
-        Configuration config = new Configuration();
+        FilterArgumentsCLI arguments = new FilterArgumentsCLI();
 
-        new CommandLine(config).parseArgs(args);
+        new CommandLine(arguments).parseArgs(args);
 
-        System.out.println(config);
+        System.out.println(arguments);
 
         long start = System.currentTimeMillis();
-        Filter filter = new Filter(config);
+        Filter filter = new Filter();
+        filter.setAppendFlag(arguments.isAppendFlag());
 
-        File[] files = config.getFiles();
+        String prefix = generatePrefix(arguments.getPath(), arguments.getPrefix());
+
+
+        System.out.println(prefix);
+
+        File[] files = arguments.getFiles();
 
         for(File file: files){
             filter.filter(file);
         }
-
-        filter.close();
         long end = System.currentTimeMillis();
 
         System.out.println("ВРЕМЯ ВЫПОЛНЕНИЯ: " + (end - start) / 1000.0 + "с");
@@ -108,5 +105,18 @@ public class Main {
 //        }
 //
 //        System.out.println("ВРЕМЯ ВЫПОЛНЕНИЯ: " + (end - start) / 1000.0 + "с");
+    }
+
+
+    private static String generatePrefix(String path, String filePrefix){
+
+        if(path == null){
+            path = "";
+        }
+        if(filePrefix == null){
+            filePrefix = "";
+        }
+
+        return path + filePrefix;
     }
 }
