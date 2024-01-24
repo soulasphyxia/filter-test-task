@@ -1,9 +1,9 @@
-package soulasphyxia;
+package soulasphyxia.statistics;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-public class StatisticsCollector {
+public class Statistics {
     private BigInteger minInt = null;
     private BigInteger maxInt = null;
 
@@ -20,27 +20,56 @@ public class StatisticsCollector {
     private BigInteger integerSum = new BigInteger(String.valueOf(0));
     private BigDecimal floatSum = new BigDecimal(0);
 
-    public void increaseIntegerSum(BigInteger bigInteger){
+
+    public void printShortStatistics(){
+
+    }
+
+    public void printFullStatistics(){
+        
+    }
+
+
+    public void collectInteger(BigInteger bigInteger){
+        increaseIntegerCount();
+        increaseIntegerSum(bigInteger);
+        setMaxOrMinInteger(bigInteger);
+    }
+
+
+    public void collectFloat(BigDecimal bigDecimal){
+        increaseFloatCount();
+        increaseFloatSum(bigDecimal);
+        setMaxOrMinFloat(bigDecimal);
+    }
+
+    public void collectString(String string){
+        increaseStringCount();
+        setMaxOrMinStringLength(string);
+    }
+
+
+    private void increaseIntegerSum(BigInteger bigInteger){
         integerSum = integerSum.add(bigInteger);
     }
 
-    public void increaseFloatSum(BigDecimal bigDecimal){
+    private void increaseFloatSum(BigDecimal bigDecimal){
         floatSum = floatSum.add(bigDecimal);
     }
 
-    public void increaseIntegerCount(){
+    private void increaseIntegerCount(){
         integerCount++;
     }
 
-    public void increaseFloatCount(){
+    private void increaseFloatCount(){
         floatCount++;
     }
 
-    public void increaseStringCount(){
+    private void increaseStringCount(){
         stringCount++;
     }
 
-    public void setMaxOrMinInteger(BigInteger bigInteger){
+    private void setMaxOrMinInteger(BigInteger bigInteger){
         if(maxInt == null || minInt == null){
             minInt = bigInteger;
             maxInt = bigInteger;
@@ -54,7 +83,7 @@ public class StatisticsCollector {
         }
     }
 
-    public void setMaxOrMinFloat(BigDecimal bigDecimal){
+    private void setMaxOrMinFloat(BigDecimal bigDecimal){
         if(maxFloat == null || minFloat == null){
             minFloat = bigDecimal;
             maxFloat = bigDecimal;
@@ -68,7 +97,7 @@ public class StatisticsCollector {
         }
     }
 
-    public void setMaxOrMinStringLength(String string){
+    private void setMaxOrMinStringLength(String string){
         int length = string.length();
         if(maxStringLength == null || minStringLength == null){
             maxStringLength = length;
@@ -82,6 +111,5 @@ public class StatisticsCollector {
             }
         }
     }
-
 
 }

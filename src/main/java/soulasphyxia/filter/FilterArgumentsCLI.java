@@ -1,4 +1,4 @@
-package soulasphyxia;
+package soulasphyxia.filter;
 
 
 import picocli.CommandLine;

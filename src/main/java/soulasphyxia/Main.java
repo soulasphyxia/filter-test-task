@@ -1,8 +1,12 @@
 package soulasphyxia;
 
 import picocli.CommandLine;
-
+import soulasphyxia.filter.Filter;
+import soulasphyxia.filter.FilterArgumentsCLI;
+import soulasphyxia.writer.FilterWriter;
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -10,23 +14,18 @@ public class Main {
         FilterArgumentsCLI arguments = new FilterArgumentsCLI();
 
         new CommandLine(arguments).parseArgs(args);
-
         System.out.println(arguments);
-
         long start = System.currentTimeMillis();
-        Filter filter = new Filter();
-        filter.setAppendFlag(arguments.isAppendFlag());
-
-        String prefix = generatePrefix(arguments.getPath(), arguments.getPrefix());
-
-
-        System.out.println(prefix);
-
+        String prefixWithPath = generatePrefixWithPath(arguments.getPath(), arguments.getPrefix());
+        Map<String,String> filenames = generateFilenamesMap(prefixWithPath);
         File[] files = arguments.getFiles();
 
-        for(File file: files){
-            filter.filter(file);
-        }
+        FilterWriter filterWriter = new FilterWriter(filenames, arguments.isAppendFlag());
+
+        Filter filter = new Filter(filterWriter);
+
+        filter.filter(files);
+
         long end = System.currentTimeMillis();
 
         System.out.println("ВРЕМЯ ВЫПОЛНЕНИЯ: " + (end - start) / 1000.0 + "с");
@@ -108,15 +107,21 @@ public class Main {
     }
 
 
-    private static String generatePrefix(String path, String filePrefix){
-
+    private static String generatePrefixWithPath(String path, String filePrefix){
         if(path == null){
             path = "";
         }
         if(filePrefix == null){
             filePrefix = "";
         }
-
         return path + filePrefix;
+    }
+
+    private static Map<String,String> generateFilenamesMap(String prefixWithPath){
+        return Map.of(
+                "integer", prefixWithPath + "integers",
+                "float", prefixWithPath + "floats",
+                "string", prefixWithPath + "strings"
+        );
     }
 }
