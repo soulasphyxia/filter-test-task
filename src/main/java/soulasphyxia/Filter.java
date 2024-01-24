@@ -13,9 +13,7 @@ public class Filter {
 
     private String statictics;
 
-    public Filter(){
-
-    }
+    public Filter(){}
 
     public void filter(File file) throws IOException {
         Writer writer = new Writer(appendFlag);

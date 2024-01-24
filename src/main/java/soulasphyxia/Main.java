@@ -6,7 +6,7 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        args = new String[]{"in2.txt","sample.txt"};
+        args = new String[]{"-o","-p","in2.txt","sample.txt"};
         FilterArgumentsCLI arguments = new FilterArgumentsCLI();
 
         new CommandLine(arguments).parseArgs(args);
