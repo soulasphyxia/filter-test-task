@@ -1,8 +1,13 @@
 package soulasphyxia.statistics;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
-
+@Data
+@NoArgsConstructor
+/*Данный класс является моделью статистики, которая собирается во время фильтрации*/
 public class Statistics {
     private BigInteger minInt = null;
     private BigInteger maxInt = null;
@@ -19,16 +24,6 @@ public class Statistics {
 
     private BigInteger integerSum = new BigInteger(String.valueOf(0));
     private BigDecimal floatSum = new BigDecimal(0);
-
-
-    public void printShortStatistics(){
-
-    }
-
-    public void printFullStatistics(){
-        
-    }
-
 
     public void collectInteger(BigInteger bigInteger){
         increaseIntegerCount();

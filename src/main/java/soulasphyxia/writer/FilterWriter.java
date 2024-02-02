@@ -6,11 +6,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Map;
 
-
-/*
-    Для записи по файлам опишем класс Writer с тремя перегруженными методами для записи разных типов данных.
-*/
-
+/*Данный класс записывает в нужный файл результат фильтрации, используя заранее определенные методы*/
 public class FilterWriter {
 
     private BufferedWriter integerWriter = null;
