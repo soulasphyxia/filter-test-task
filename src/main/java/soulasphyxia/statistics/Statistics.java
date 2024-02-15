@@ -31,7 +31,6 @@ public class Statistics {
         setMaxOrMinInteger(bigInteger);
     }
 
-
     public void collectFloat(BigDecimal bigDecimal){
         increaseFloatCount();
         increaseFloatSum(bigDecimal);
@@ -42,7 +41,6 @@ public class Statistics {
         increaseStringCount();
         setMaxOrMinStringLength(string);
     }
-
 
     private void increaseIntegerSum(BigInteger bigInteger){
         integerSum = integerSum.add(bigInteger);
@@ -72,6 +70,7 @@ public class Statistics {
             if(bigInteger.compareTo(maxInt) > 0){
                 maxInt = bigInteger;
             }
+
             if(bigInteger.compareTo(minInt) < 0){
                 minInt = bigInteger;
             }
@@ -86,6 +85,7 @@ public class Statistics {
             if(bigDecimal.compareTo(maxFloat) > 0){
                 maxFloat = bigDecimal;
             }
+
             if(bigDecimal.compareTo(minFloat) < 0){
                 minFloat = bigDecimal;
             }
@@ -101,10 +101,10 @@ public class Statistics {
             if(length > maxStringLength){
                 maxStringLength = length;
             }
+
             if(length < minStringLength){
                 minStringLength = length;
             }
         }
     }
-
 }

@@ -1,4 +1,5 @@
 package soulasphyxia.filter;
+import lombok.Getter;
 import soulasphyxia.statistics.Statistics;
 import soulasphyxia.writer.FilterWriter;
 
@@ -11,9 +12,9 @@ import java.util.Locale;
 import java.util.Scanner;
 /*
     Данный класс предназачен для фильтрации массива файлов и сбора статистики
- */
+*/
 public class Filter {
-
+    @Getter
     private final Statistics statistics;
     private final FilterWriter filterWriter;
 
@@ -21,9 +22,11 @@ public class Filter {
         this.statistics = new Statistics();
         this.filterWriter = filterWriter;
     }
+
     /*
     * Данный метод фильтрует файлы с помощью сканнера в том порядке, в котором они были переданы,а также записывает
-    * результаты с помощью объекта класса FileWriter */
+    * результаты с помощью объекта класса FileWriter
+    * */
     public void filter(File[] files) throws IOException {
         for(File file : files){
             try(Scanner sc = new Scanner(file)){
@@ -51,9 +54,5 @@ public class Filter {
             }
         }
         filterWriter.close();
-    }
-
-    public Statistics getStatistics() {
-        return statistics;
     }
 }

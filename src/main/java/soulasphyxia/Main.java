@@ -35,14 +35,15 @@ public class Main {
         }
     }
 
-
     private static String generatePrefixWithPath(String path, String filePrefix){
         if(path == null){
             path = "";
         }
+
         if(filePrefix == null){
             filePrefix = "";
         }
+
         return path + filePrefix;
     }
 

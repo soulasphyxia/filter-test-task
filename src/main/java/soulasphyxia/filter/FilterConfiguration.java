@@ -8,7 +8,6 @@ import java.util.Arrays;
 
 /*Данный класс конфигурации характеризует параметры, использующиеся при фильтрации */
 public class FilterConfiguration {
-
     @CommandLine.Option(names = {"-o"},description = "Префикс для имени файла")
     private String prefix;
     @CommandLine.Option(names = {"-p"},description = "Путь")
@@ -25,7 +24,6 @@ public class FilterConfiguration {
     @CommandLine.Parameters(arity ="1..*" ,paramLabel = "FILE", description = "Укажите 1 или более файлов")
     private File[] files;
 
-
     public String getPrefix() {
         return prefix;
     }
@@ -41,7 +39,6 @@ public class FilterConfiguration {
     public boolean isFullStat() {
         return fullStat;
     }
-
 
     public boolean isShortStat() {
         return shortStat;
