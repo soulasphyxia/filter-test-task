@@ -21,6 +21,9 @@ public class FilterWriter {
         this.appendFlag = appendFlag;
     }
 
+    /**
+     * Методы для записи типа данных в соответсвующий файл
+     */
     public void write(String input) throws IOException {
         if(stringWriter == null){
             this.stringWriter = new BufferedWriter(new FileWriter(filenames.get("string"),appendFlag));

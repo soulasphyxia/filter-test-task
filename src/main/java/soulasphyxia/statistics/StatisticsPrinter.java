@@ -18,7 +18,9 @@ public class StatisticsPrinter {
         this.filenames = filenames;
     }
 
-
+    /*
+        Методы для печати статистики в консоль
+    */
     public void printShortStatistics(){
         generateShortStatistics();
         if(tokens.size() > 1){
@@ -33,7 +35,9 @@ public class StatisticsPrinter {
         }
     }
 
-
+    /*
+        Генерация краткой статистики
+    */
     private void generateShortStatistics(){
         tokens.add("Короткая статистика:");
         if(statistics.getIntegerCount() > 0){
@@ -47,7 +51,9 @@ public class StatisticsPrinter {
         }
     }
 
-
+    /*
+        Генерация полной статистики
+    */
     private void generateFullStatistics(){
         tokens.add("Полная статистика:\n");
         if(statistics.getIntegerCount() > 0){
@@ -67,6 +73,10 @@ public class StatisticsPrinter {
         }
     }
 
+
+    /*
+        Генерация токенов для статистики
+    */
 
     private String generateShortToken(String filename, long elementsCount){
         return String.format("В файл %s записано элементов: %d", filename, elementsCount);

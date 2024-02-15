@@ -23,10 +23,11 @@ public class Filter {
         this.filterWriter = filterWriter;
     }
 
-    /*
-    * Данный метод фильтрует файлы с помощью сканнера в том порядке, в котором они были переданы,а также записывает
-    * результаты с помощью объекта класса FileWriter
-    * */
+    /**
+     * @param files
+     * @throws IOException
+     * Фильтрует массив файлов, записывает результат с помощью FileWriter
+     */
     public void filter(File[] files) throws IOException {
         for(File file : files){
             try(Scanner sc = new Scanner(file)){
