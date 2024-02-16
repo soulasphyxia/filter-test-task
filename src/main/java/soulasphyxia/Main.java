@@ -35,6 +35,11 @@ public class Main {
         }
     }
 
+    /**
+     * @param path
+     * @param filePrefix
+     * @return Сгенерированный префикс с путем для файла
+     */
     private static String generatePrefixWithPath(String path, String filePrefix){
         if(path == null){
             path = "";
@@ -47,6 +52,10 @@ public class Main {
         return path + filePrefix;
     }
 
+    /**
+     * @param prefixWithPath
+     * @return Таблица с итоговыми именами файлов(префикс + имя файла)
+     */
     private static Map<String,String> generateFilenamesMap(String prefixWithPath){
         return Map.of(
                 "integer", prefixWithPath + "integers.txt",

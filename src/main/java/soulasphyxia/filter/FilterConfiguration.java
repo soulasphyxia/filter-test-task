@@ -1,16 +1,18 @@
 package soulasphyxia.filter;
 
 
+import lombok.Getter;
 import picocli.CommandLine;
 
 import java.io.File;
 import java.util.Arrays;
 
 /*Данный класс конфигурации характеризует параметры, использующиеся при фильтрации */
+@Getter
 public class FilterConfiguration {
-    @CommandLine.Option(names = {"-o"},description = "Префикс для имени файла")
+    @CommandLine.Option(names = {"-p"},description = "Префикс для имени файла")
     private String prefix;
-    @CommandLine.Option(names = {"-p"},description = "Путь")
+    @CommandLine.Option(names = {"-o"},description = "Путь")
     private String path;
     @CommandLine.Option(names={"-a"}, description = "Добавление в существующие файлы", defaultValue = "false")
     private boolean appendFlag;
@@ -23,30 +25,6 @@ public class FilterConfiguration {
 
     @CommandLine.Parameters(arity ="1..*" ,paramLabel = "FILE", description = "Укажите 1 или более файлов")
     private File[] files;
-
-    public String getPrefix() {
-        return prefix;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public boolean isAppendFlag() {
-        return appendFlag;
-    }
-
-    public boolean isFullStat() {
-        return fullStat;
-    }
-
-    public boolean isShortStat() {
-        return shortStat;
-    }
-
-    public File[] getFiles() {
-        return files;
-    }
 
     @Override
     public String toString() {
